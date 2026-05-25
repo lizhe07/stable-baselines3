@@ -179,7 +179,7 @@ def get_flattened_obs_dim(observation_space: spaces.Space) -> int:
     # See issue https://github.com/openai/gym/issues/1915
     # it may be a problem for Dict/Tuple spaces too...
     if isinstance(observation_space, spaces.MultiDiscrete):
-        return sum(observation_space.nvec)
+        return int(sum(observation_space.nvec))
     else:
         # Use Gym internal method
         return spaces.utils.flatdim(observation_space)
