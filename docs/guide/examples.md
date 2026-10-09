@@ -66,6 +66,7 @@ from stable_baselines3.common.evaluation import evaluate_policy
 env = gym.make("LunarLander-v3", render_mode="rgb_array")
 
 # Instantiate the agent
+# Note: you can enable multi-step replay buffer by passing `n_steps=3` for instance
 model = DQN("MlpPolicy", env, verbose=1)
 # Train the agent and display a progress bar
 model.learn(total_timesteps=int(2e5), progress_bar=True)
@@ -816,7 +817,7 @@ img = model.env.render(mode="rgb_array")
 for i in range(350):
     images.append(img)
     action, _ = model.predict(obs)
-    obs, _, _ ,_ = model.env.step(action)
+    obs, _, _, _ = model.env.step(action)
     img = model.env.render(mode="rgb_array")
 
 imageio.mimsave("lander_a2c.gif", [np.array(img) for i, img in enumerate(images) if i%2 == 0], fps=29)

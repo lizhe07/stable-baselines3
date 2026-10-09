@@ -6,7 +6,7 @@ To use the RL baselines with custom environments, they just need to follow the *
 That is to say, your environment must implement the following methods (and inherits from Gym Class):
 
 :::{note}
-If you are using images as input, the observation must be of type `np.uint8` and be within a space `Box` bounded by [0, 255] (`Box(low=0, high=255, shape=(<your image shape>)`).
+If you are using images as input, the observation must be of type `np.uint8` and be within a space `Box` bounded by [0, 255] (`Box(low=0, high=255, shape=(<your image shape>))`).
 By default, the observation is normalized by SB3 pre-processing (dividing by 255 to have values in [0, 1], i.e. `Box(low=0, high=1)`) when using CNN policies.
 Images can be either channel-first or channel-last.
 
@@ -113,7 +113,7 @@ env = CustomEnv(arg1, ...)
 check_env(env)
 ```
 
-Gymnasium also have its own [env checker](https://gymnasium.farama.org/api/utils/#gymnasium.utils.env_checker.check_env) but it checks a superset of what SB3 supports (SB3 does not support all Gym features).
+Gymnasium also has its own [env checker](https://gymnasium.farama.org/api/utils/#gymnasium.utils.env_checker.check_env) but it checks a superset of what SB3 supports (SB3 does not support all Gym features).
 
 We have created a [colab notebook](https://colab.research.google.com/github/araffin/rl-tutorial-jnrr19/blob/sb3/5_custom_gym_env.ipynb) for a concrete example of creating a custom environment along with an example of using it with Stable-Baselines3 interface.
 

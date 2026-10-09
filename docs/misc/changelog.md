@@ -2,6 +2,41 @@
 
 # Changelog
 
+## Release 2.9.2a0 (WIP)
+
+### Breaking Changes:
+
+### New Features:
+
+### Bug Fixes:
+
+- Fixed file descriptor leak in `SubprocVecEnv.close()` by closing parent-side pipes to prevent "too many open files" errors in long-running loops
+
+### [SB3-Contrib]
+
+### [RL Zoo]
+
+### [SBX] (SB3 + Jax)
+
+### Deprecations:
+
+### Others:
+
+- Fixed moviepy test compatibility with moviepy >= 2.0 (PyTorch doesn't support it yet)
+- Added filter for numpy `newshape` deprecation warning from torch tensorboard
+- Fixed mypy error in test_vec_envs.py by wrapping `itertools.product` with `list()`
+- Improved tests coverage for RMSpropTFLike optimizer (invalid params, centered/momentum/weight_decay branches, pickle roundtrip)
+- Improved test coverage for `save_util.py`: added tests for `BadZipFile` error handling in `load_from_zip_file` and `IsADirectoryError`/`FileNotFoundError` handling in `open_path`
+- Fixed Docker build by adding the missing `--system` flag to `uv pip uninstall opencv-python` (required by recent `uv`)
+- Added a warning when `n_steps > 1` is passed together with a custom `replay_buffer_class`, as `n_steps` is only applied when the replay buffer class is selected automatically (@Koustav-github)
+- Updated tests dependencies
+
+### Documentation:
+
+- Clarified in the `n_steps` docstring that it only applies when `replay_buffer_class` is `None`, and that a custom replay buffer must be configured with `replay_buffer_kwargs={"n_steps": ..., "gamma": ...}` (@Koustav-github)
+- Updated algorithm table (added the ones from SBX and sorted the table)
+- Fixed typos, grammar, and Gymnasium API inconsistencies across documentation
+
 ## Release 2.9.0 (2026-06-15)
 
 **Updated dependencies (pandas is now optional, gymnasium 1.3.0 support, torch>=2.8)**
@@ -1871,7 +1906,7 @@ And all the contributors:
 @DavyMorgan @luizapozzobon @Bonifatius94 @theSquaredError @harveybellini @DavyMorgan @FieteO @jonasreiher @npit @WeberSamuel @troiganto
 @lutogniew @lbergmann1 @lukashass @BertrandDecoster @pseudo-rnd-thoughts @stefanbschneider @kyle-he @PatrickHelm @corentinlger
 @marekm4 @stagoverflow @rushitnshah @markscsmith @NickLucche @cschindlbeck @peteole @jak3122 @will-maclean
-@brn-dev @jmacglashan @kplers @MarcDcls @chrisgao99 @pstahlhofen @akanto @Trenza1ore @JonathanColetti @unexploredtest
+@brn-dev @jmacglashan @kplers @MarcDcls @chrisgao99 @pstahlhofen @akanto @Trenza1ore @JonathanColetti @unexploredtest @Koustav-github
 @m-abr
 
 [@adamgleave]: https://github.com/adamgleave

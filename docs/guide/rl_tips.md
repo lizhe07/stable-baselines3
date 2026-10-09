@@ -104,7 +104,7 @@ Take a look at the [Vectorized Environments](vec_envs.md) to learn more about tr
 
 To accelerate training, you can also take a look at [SBX], which is SB3 + Jax, it has less features than SB3 but can be up to 20x faster than SB3 PyTorch thanks to JIT compilation of the gradient update.
 
-In sparse reward settings, we either recommend using either dedicated methods like HER (see below) or population-based algorithms like ARS (available in our [contrib repo](sb3_contrib.md).
+In sparse reward settings, we recommend using dedicated methods like HER (see below) or population-based algorithms like ARS (available in our [contrib repo](sb3_contrib.md).
 
 To sum up:
 
@@ -195,7 +195,7 @@ for _ in range(n_steps):
     # Random action
     action = env.action_space.sample()
     obs, reward, terminated, truncated, info = env.step(action)
-    if done:
+    if terminated or truncated:
         obs, info = env.reset()
 ```
 
